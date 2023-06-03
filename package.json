@@ -10,12 +10,14 @@
     "start": "npm run watch:all",
     "clean": "rimraf dist",
     "usemin": "usemin contactus.html -d dist --htmlmin -o dist/contactus.html && usemin aboutus.html -d dist --htmlmin -o dist/aboutus.html && usemin index.html -d dist --htmlmin -o dist/index.html",
-	    "build": "npm run clean && npm run imagemin && npm run copyfonts && npm run usemin",
-
+    "build": "npm run clean && npm run imagemin && npm run copyfonts && npm run usemin",
     "imagemin": "imagemin img/* --out-dir='dist/img'",
     "copyfonts": "copyfiles -f node_modules/font-awesome/fonts/* dist/fonts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lite": "lite-server"
+    "lite": "lite-server",
+    "scss": "node-sass -o css/ css/",
+    "build-css": "node-sass --include-path scss src/input.scss src/styles.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\" "
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +33,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "concurrently": "^8.1.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9"
   }
